@@ -6,21 +6,21 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class inventoriesModel extends Model
+class merchants extends Model
 {
+    use HasFactory;
     use SoftDeletes;
     
-    protected $table = 'inventories';
+    protected $table = 'merchants';
 
     protected $fillable = [
         'name',
-        'price',
-        'amount',
-        'unit'
+        'key',
     ];
     protected $hidden = [
         'deleted_at',
         'updated_at',
         'created_at'
     ];
+
 }

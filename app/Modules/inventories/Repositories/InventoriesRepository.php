@@ -2,23 +2,24 @@
 
 namespace App\Modules\inventories\Repositories;
 
-use App\Models\inventoriesModel;
+use App\Models\inventories;
 use App\Modules\inventories\Interfaces\InventoriesRepositoryInterface;
 
 class InventoriesRepository implements InventoriesRepositoryInterface
 {
     protected $inventories;
 
-    public function __construct(inventoriesModel $inventoriesModel)
+    public function __construct(inventories $inventories)
     {
-        $this->inventories = $inventoriesModel;
+        $this->inventories = $inventories;
     }
 
     public function create(
         $name,
         $price,
         $amount,
-        $unit
+        $unit,
+        $id
     )
     {
         return $this->inventories->create([
@@ -26,12 +27,16 @@ class InventoriesRepository implements InventoriesRepositoryInterface
             'price'         => $price,
             'amount'        => $amount,
             'unit'          => $unit,
-
+            'id_merchant'   => $id
         ]);
     }
-    public function update($id, $data)
+
+    public function findById($id){
+        return $this->inventories->where('id',$id)->first();
+    }
+    public function update($data, $id)
     {
-        return  $this->inventories->where('id',$id)->update($data);
+        return $this->inventories->where('id',$id)->update($data);
     }
 
     public function delete($id)

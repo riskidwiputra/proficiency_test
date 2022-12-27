@@ -18,6 +18,8 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->integer('price');
+            $table->unsignedBigInteger('id_merchant');
+            $table->foreign('id_merchant')->references('id')->on('merchants')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

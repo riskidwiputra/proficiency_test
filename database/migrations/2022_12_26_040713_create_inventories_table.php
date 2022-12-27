@@ -15,6 +15,8 @@ class CreateInventoriesTable extends Migration
     {
         Schema::create('inventories', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('id_merchant');
+            $table->foreign('id_merchant')->references('id')->on('merchants')->onDelete('cascade');
             $table->string('name');
             $table->integer('price');
             $table->integer('amount');

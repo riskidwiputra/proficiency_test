@@ -7,8 +7,12 @@ interface InventoriesRepositoryInterface
         $name,
         $price,
         $amount,
-        $unit
+        $unit,
+        $id
     );
     
     public function getAllInventories();
+    public function findById($id);
+    public function update($data, $id);
+    public function delete($id);
 }

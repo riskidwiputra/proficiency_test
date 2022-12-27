@@ -2,12 +2,11 @@
 
 namespace App\Exceptions;
 
-use Dotenv\Exception\ValidationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Support\Facades\Lang;
-use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Illuminate\Validation\ValidationException;
+
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -45,28 +44,17 @@ class Handler extends ExceptionHandler
     }
     public function render($request, Throwable $exception)
     {
-        if ($exception instanceof MethodNotAllowedHttpException) {
-            return response()->json([
-                'status'    => false,
-                'message'   => Lang::get('exeptions.not_allowed')
-            ], 400);
-        }
         if ($exception instanceof ModelNotFoundException) {
             return response()->json([
                 'status'    => false,
-                'message'   => Lang::get('exeptions.model_not_found')
+                'message'   => "Resource item not found."
             ], 404);
         }
-        if ($exception instanceof NotFoundHttpException) {
-            return response()->json([
-                'status'    => false,
-                'message'   => Lang::get('exeptions.http_not_found')
-            ], 404);
-        }
+
         if ($exception instanceof ValidationException) {
             return response()->json([
                 'status'  => false,
-                'message' => Lang::get('exeptions.validation'),
+                'message' => "The given data was invalid.",
                 'errors' => $exception->validator->getMessageBag()
             ], 422); //type your error code.
         }

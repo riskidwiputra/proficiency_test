@@ -17,8 +17,8 @@ class CreateProductVariantTable extends Migration
             $table->id();
             $table->unsignedBigInteger('id_product');
             $table->unsignedBigInteger('id_variant');
-            $table->foreign('id_product')->references('id')->on('products')->onDelete('cascade');;
-            $table->foreign('id_variant')->references('id')->on('variants')->onDelete('cascade');;
+            $table->foreign('id_product')->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('id_variant')->references('id')->on('variants')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });
