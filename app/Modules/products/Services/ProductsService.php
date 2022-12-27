@@ -24,11 +24,11 @@ class ProductsService implements ProductsServiceInterface
         $this->MerchantsRepository = $MerchantsRepositoy;
     }
 
-    public function getAll(){
+    public function getAll($id_merchant){
         
         try{
-            
-            return $this->ProductsRepository->getAllProducts();
+            $merchants = $this->MerchantsRepository->getBykey($id_merchant);
+            return $this->ProductsRepository->getAllProducts($merchants->id);
 
         } catch (\Exception $e) {
 

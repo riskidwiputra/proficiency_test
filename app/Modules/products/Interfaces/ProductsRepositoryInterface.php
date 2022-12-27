@@ -9,7 +9,7 @@ interface ProductsRepositoryInterface
         $price,
         $id
     );
-    public function getAllProducts();
+    public function getAllProducts($id_merchant);
     public function findById($id);
     public function update($data, $id);
     public function delete($id);

@@ -42,8 +42,8 @@ class ProductsRepository implements ProductsRepositoryInterface
         return $this->Products->where('id', $id)->delete();
     }
 
-    public function getAllProducts(){
-        return $this->Products->with('variants')->latest()->limit(10)->get();
+    public function getAllProducts($id_merchant){
+        return $this->Products->where('id_merchant',$id_merchant)->with('variants')->latest()->limit(10)->get();
     }
     
     public function createProductVariant($id_product,$id_variant){

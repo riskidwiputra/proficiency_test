@@ -37,7 +37,7 @@ class ProductsController extends Controller
     {
         try{
 
-            $getData = $this->productsService->getAll();
+            $getData = $this->productsService->getAll($this->key);
 
             $manager = new Manager();
 
